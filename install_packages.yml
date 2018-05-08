@@ -1,0 +1,29 @@
+-
+  name: Install some packages
+  hosts: docker
+  tasks:
+    - name: Update Repo & Install default-jdk
+      apt:
+        name: default-jdk
+        update_cache: yes
+    - name: Install software-properties-common packages
+      apt:
+        name: software-properties-common
+        state: present
+    - name: Install Python2.7
+      apt:
+        name: python
+        state: present
+    - name: Install Pip
+      apt:
+        name: python-pip
+        state: present
+    - name: Add Java 8 repo from PPA
+      apt_repository:
+        repo: 'ppa:webupd8team/java'
+    - name: Set selection to True for installing Java 8
+      shell: echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+    - name: Install Java 8
+      apt:
+        name: oracle-java8-installer
+        update_cache: yes

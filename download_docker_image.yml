@@ -1,0 +1,7 @@
+---
+- name: Download Docker Images
+  hosts: web
+  tasks:
+  - name: Pull Image from Docker Hub
+    docker_image:
+      name: keyurbitw/apachecentos

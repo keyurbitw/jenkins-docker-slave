@@ -1,0 +1,11 @@
+---
+- hosts: web
+  vars:
+    docker_opts: >
+      -H unix://
+      -H tcp://0.0.0.0:2375
+      --log-level=debug
+  become: true
+  become_method: sudo
+  roles:
+  - angstwad.docker.ubuntu

@@ -1,0 +1,12 @@
+#Group for localhost where the docker image would be downloaded and conatainer will run 
+[control]
+local_host ansible_host=127.0.0.1 ansible_connection=local
+
+#Docker container group
+#Need to update the ansible_host var based on the IP of your container
+[docker]
+#dock01 ansible_host=172.17.0.2 ansible_connection=ssh ansible_user=root ansible_ssh_pass=screencast ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#dock02 ansible_host=172.17.0.3 ansible_connection=ssh ansible_user=root ansible_ssh_pass=screencast ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#dock03 ansible_host=172.17.0.4 ansible_connection=ssh ansible_user=root ansible_ssh_pass=screencast ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#dock04 ansible_host=172.17.0.5 ansible_connection=ssh ansible_user=root ansible_ssh_pass=screencast ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+dock05 ansible_host=10.107.3.111 ansible_port=82 ansible_connection=ssh ansible_user=root ansible_ssh_pass=screencast ansible_ssh_common_args='-o StrictHostKeyChecking=no'

@@ -1,0 +1,45 @@
+-
+  name: Install some packages
+  hosts: control
+  tasks:
+    - name: Stop all the previous containers
+      shell: docker stop $(docker ps -q)
+    
+    - name: Remove all the previous container
+      shell: docker rm $(docker ps -aq)
+
+    - name: Start the conatainer for jenkinns docker slave
+      shell: docker run -d --name "{{item}}" keyurbitw/jenkinsdockerslave
+      loop:		 
+         - jenkins-docker-slave01
+         - jenkins-docker-slave02 
+         - jenkins-docker-slave03 
+         - jenkins-docker-slave04 
+    
+    - name: Get the IP of the conatiner
+      shell: "docker inspect jenkins-docker-slave01 | grep 'IPAddress'"
+      register: dock01_ip
+      
+    - debug:
+        msg:{{dock01_ip.stdout}}
+ 
+    - name: Get the IP of the conatiner
+      shell: "docker inspect jenkins-docker-slave02 | grep 'IPAddress'"
+      register: dock02_ip
+      
+    - debug:
+        msg:{{dock02_ip.stdout}}
+
+    - name: Get the IP of the conatiner
+      shell: "docker inspect jenkins-docker-slave03 | grep 'IPAddress'"
+      register: dock03_ip
+
+    - debug:
+        msg:{{dock03_ip.stdout}}
+
+    - name: Get the IP of the conatiner
+      shell: "docker inspect jenkins-docker-slave04 | grep 'IPAddress'"
+      register: dock04_ip
+
+    - debug:
+        msg:{{dock04_ip.stdout}}

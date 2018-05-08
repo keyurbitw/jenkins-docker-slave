@@ -1,0 +1,27 @@
+-
+  name: A basic playbook for getting kernel version for all the hosts entries in hosts inventory file.
+  
+  #Defines where this task would run. i.e on which hosts. Here all specfies across all the hosts listed in the inventory file.
+  hosts: all
+  
+  #Task defination. What task needs to be perfomed.
+  tasks:
+    - 
+      #Name of the 1st task. Similary we can create multiple task entries to be executed
+      name: Command to get kernel version. 
+      
+      #Use the shell module of Ansible to execute the uname -r command on remote hosts. You cannot use command module as well. 
+      shell: unname -r
+      
+      #Register the result to a variable. i.e variable where the result will be stored
+      register: contents
+    
+    - 
+     #Name of the 2nd task.
+     name: Print the output of the 1st task
+     
+     #Use the debug module to print the statements during the execution of the task 1 using the variable used in register
+     debug:
+       #Print std-out.
+       msg={{contents.stdout}}
+         
